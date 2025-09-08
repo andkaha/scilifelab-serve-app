@@ -1,0 +1,23 @@
+# Docker Compose configuration file to "simulate" a SciLifeLab Serve
+# "Custom App" environment.
+
+name: ${APP_NAME?}
+
+services:
+  app:
+    image: ${APP_IMAGE?}
+
+    build:
+      context: ${MY_APP_DIR:-.}
+      args:
+        MY_APP_USER: ${MY_APP_USER?}
+        APP_PORT: ${APP_PORT:-8000}
+        APP_VOLUME_PATH: ${APP_VOLUME_PATH?}
+
+    ports:
+      - 127.0.0.1:4157:${APP_PORT:-8000}
+    volumes:
+      - project-vol:${APP_VOLUME_PATH?}
+
+volumes:
+  project-vol:
