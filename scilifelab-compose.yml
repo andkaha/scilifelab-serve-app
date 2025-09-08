@@ -11,7 +11,7 @@ services:
     entrypoint:
       - ./start-script.sh
     ports:
-      - 127.0.0.1:4157:${APP_PORT:-8000}
+      - 127.0.0.1:4157:${APP_PORT?}
     volumes:
       - project-vol:${APP_VOLUME_PATH?}
 
