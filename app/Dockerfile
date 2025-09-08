@@ -1,11 +1,11 @@
 FROM alpine:latest
 
+ARG MY_APP_USER=service
+ARG MY_APP_PORT=8000
+ARG MY_APP_VOLUME_PATH=/home/$MY_APP_USER/vol
+
 RUN --mount=type=cache,id=apk-cache,target=/etc/apk/cache \
 	apk add caddy
-
-ARG MY_APP_USER
-ARG APP_PORT
-ARG APP_VOLUME_PATH
 
 ARG UID=1000
 RUN adduser -D -u "$UID" "$MY_APP_USER"
@@ -14,14 +14,12 @@ WORKDIR "/home/${MY_APP_USER?}"
 
 USER "$UID"
 
-ENV APP_PORT=${APP_PORT?}
-ENV APP_VOLUME_PATH=${APP_VOLUME_PATH?}
+ENV MY_APP_PORT=${MY_APP_PORT?}
+ENV MY_APP_VOLUME_PATH=${MY_APP_VOLUME_PATH?}
 
 COPY --chown=$UID --chmod=444 ./Caddyfile ./Caddyfile
 COPY --chown=$UID --chmod=555 ./start-script.sh ./start-script.sh
 
-RUN install -d -o "$UID" "$APP_VOLUME_PATH"
+RUN install -d -o "$UID" "$MY_APP_VOLUME_PATH"
 
-CMD [ "./start-script.sh" ]
-
-EXPOSE $APP_PORT
+EXPOSE $MY_APP_PORT
