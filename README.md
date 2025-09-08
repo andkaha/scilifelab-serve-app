@@ -1,7 +1,7 @@
 # scilifelab-serve-app
 
-Simple local development scaffold for apps destined for SciLifeLab
-Serve.
+Simple local development scaffold for apps that may be deployed on
+[SciLifeLab Serve](https://serve.scilifelab.se).
 
 ## Purpose
 
@@ -20,7 +20,7 @@ This demo app is intended to illustrate the structure and setup required
 for deploying an app to SciLifeLab Serve. You can replace the demo
 app with your own application by modifying the `Dockerfile` (and
 the various other files) in the `app` directory and adjusting the
-`scilifelab-compose.yml` file as needed.
+`scilifelab-app.env` file as needed.
 
 To run the demo app:
 
