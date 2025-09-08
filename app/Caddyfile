@@ -1,4 +1,4 @@
-:{$APP_PORT} {
+:{$MY_APP_PORT} {
 	log {
 		output stderr
 		format console
