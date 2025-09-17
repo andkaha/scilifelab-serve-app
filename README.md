@@ -34,9 +34,9 @@ To run the demo app:
 
 - To add content, place an `index.html` file in the
   `/home/service/vol/www/` directory (the `$APP_VOLUME_PATH/www/`
-  directory) in the container while the container is running:
+  directory) in the container while the container is running.  The demo
+  project's `start-script.sh` ensures that this directory exists.
     ```bash
-    ./docker-compose.sh exec app mkdir -p /home/service/vol/www/
     ./docker-compose.sh cp app/index.html app:/home/service/vol/www/
     ```
 
